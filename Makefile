@@ -1,4 +1,6 @@
 all: zip
 
 zip:
-	zip project.zip src/pacman/Direction.java src/pacman/Dot.java src/pacman/FoodItem.java src/pacman/Ghost.java src/pacman/GhostState.java src/pacman/MazeDescriptions.java src/pacman/Maze.java src/pacman/MazeMap.java src/pacman/PacMan.java src/pacman/PowerPellet.java src/pacman/RegularGhostState.java src/pacman/Square.java src/pacman/VulnerableGhostState.java
+	cp src/pacman pacman -r
+	zip project.zip pacman/Direction.java pacman/Dot.java pacman/FoodItem.java pacman/Ghost.java pacman/GhostState.java pacman/MazeDescriptions.java pacman/Maze.java pacman/MazeMap.java pacman/PacMan.java pacman/PowerPellet.java pacman/RegularGhostState.java pacman/Square.java pacman/VulnerableGhostState.java
+	rm pacman -rf
