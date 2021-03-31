@@ -53,6 +53,9 @@ public class MazeDescriptions {
 						throw new IllegalArgumentException("Maze description contains multiple P characters");
 					pacMan = new PacMan(3, Square.of(map, row, column));
 				}
+				case 'p' -> {
+
+				}
 				default -> throw new IllegalArgumentException("Invalid character in maze description: " + c);
 				}
 			}

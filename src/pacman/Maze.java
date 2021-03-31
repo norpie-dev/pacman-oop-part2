@@ -75,4 +75,8 @@ public class Maze {
 		}
 	}
 
+	public FoodItem[] getFoodItems() {
+		return null;
+	}
+
 }
