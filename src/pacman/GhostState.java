@@ -2,7 +2,7 @@ package pacman;
 
 import java.util.Random;
 
-public class GhostState {
+public abstract class GhostState {
 
 	public boolean isVulnerable() {
 		return false;
@@ -11,5 +11,7 @@ public class GhostState {
 	public void move(Ghost ghost, Random random) {
 		ghost.reallyMove(random);
 	}
+
+	public abstract GhostState hitBy(Ghost ghost, PacMan pacMan);
 
 }

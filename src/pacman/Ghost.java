@@ -16,7 +16,9 @@ public class Ghost {
 	 * @invar | direction != null
 	 */
 	private Square square;
+	private Square startSquare;
 	private Direction direction;
+	private Direction startDirection;
 	private GhostState ghostState;
 
 	/**
@@ -51,7 +53,9 @@ public class Ghost {
 			throw new IllegalArgumentException("`direction` is null");
 		
 		this.square = square;
+		this.startSquare = square;
 		this.direction = direction;
+		this.startDirection = direction;
 		this.ghostState = new RegularGhostState();
 	}
 	
@@ -106,6 +110,15 @@ public class Ghost {
 		if (result < moveForwardPreference)
 			return getDirection();
 		return passableDirections[result - moveForwardPreference];
+	}
+	
+	public void hitBy(PacMan pacMan) {
+		ghostState = ghostState.hitBy(this, pacMan);
+	}
+	
+	public void reset() {
+		setSquare(startSquare);
+		setDirection(startDirection);
 	}
 	
 	public void move(Random random) {

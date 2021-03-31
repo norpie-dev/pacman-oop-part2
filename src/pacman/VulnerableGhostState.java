@@ -24,4 +24,9 @@ public class VulnerableGhostState extends GhostState {
 		ghost.reallyMove(random);
 		moveDelay++;
 	}
+	
+	public GhostState hitBy(Ghost ghost, PacMan pacMan) {
+		ghost.reset();
+		return new RegularGhostState();
+	}
 }
