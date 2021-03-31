@@ -15,6 +15,10 @@ public class FoodItem {
 	public int getSize() {
 		return size;
 	}
+	
+	public void effect(Ghost[] ghosts) {
+		/* FoodItem has no effect by default */
+	}
 
 	/**
 	 * @invar | square != null

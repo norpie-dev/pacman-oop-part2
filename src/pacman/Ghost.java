@@ -17,6 +17,7 @@ public class Ghost {
 	 */
 	private Square square;
 	private Direction direction;
+	private GhostState ghostState;
 
 	/**
 	 * @basic
@@ -27,6 +28,10 @@ public class Ghost {
 	 * @basic
 	 */
 	public Direction getDirection() { return direction; }
+	
+	public boolean isVulnerable() {
+		return ghostState.isVulnerable();
+	}
 	
 	/**
 	 * Initializes this object so that its initial position is the
@@ -47,6 +52,7 @@ public class Ghost {
 		
 		this.square = square;
 		this.direction = direction;
+		this.ghostState = new RegularGhostState();
 	}
 	
 	/**
@@ -83,6 +89,11 @@ public class Ghost {
 		this.direction = direction;
 	}
 	
+	public void pacManAtePowerPellet() {
+		setDirection(direction.getOpposite());
+		this.ghostState = new VulnerableGhostState();
+	}
+	
 	private static int MOVE_FORWARD_PREFERENCE = 10;
 	
 	// No formal documentation required.
@@ -97,8 +108,12 @@ public class Ghost {
 		return passableDirections[result - moveForwardPreference];
 	}
 	
-	// No formal documentation required.
 	public void move(Random random) {
+		ghostState.move(this, random);
+	}
+	
+	// No formal documentation required.
+	public void reallyMove(Random random) {
 		setDirection(chooseNextMoveDirection(random));
 		setSquare(getSquare().getNeighbor(getDirection()));
 	}

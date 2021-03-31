@@ -19,8 +19,8 @@ public class MazeDescriptions {
 		for (int i = 0; i < passable.length; i++)
 			passable[i] = true;
 
-		int nbDots = 0;
-		Dot[] dots = new Dot[width * height];
+		int nbFoodItems = 0;
+		FoodItem[] foodItems = new FoodItem[width * height];
 
 		int nbGhosts = 0;
 		Ghost[] ghosts = new Ghost[width * height];
@@ -45,16 +45,14 @@ public class MazeDescriptions {
 				}
 				case '#' -> {
 				}
-				case '.' -> dots[nbDots++] = new Dot(Square.of(map, row, column));
+				case '.' -> foodItems[nbFoodItems++] = new Dot(Square.of(map, row, column));
+				case 'p' -> foodItems[nbFoodItems++] = new PowerPellet(Square.of(map, row, column));
 				case 'G' -> ghosts[nbGhosts++] = new Ghost(Square.of(map, row, column),
 						Direction.values()[random.nextInt(Direction.values().length)]);
 				case 'P' -> {
 					if (pacMan != null)
 						throw new IllegalArgumentException("Maze description contains multiple P characters");
 					pacMan = new PacMan(3, Square.of(map, row, column));
-				}
-				case 'p' -> {
-
 				}
 				default -> throw new IllegalArgumentException("Invalid character in maze description: " + c);
 				}
@@ -64,7 +62,7 @@ public class MazeDescriptions {
 		if (pacMan == null)
 			throw new IllegalArgumentException("Maze description does not contain a P character");
 
-		return new Maze(random, map, pacMan, Arrays.copyOf(ghosts, nbGhosts), Arrays.copyOf(dots, nbDots));
+		return new Maze(random, map, pacMan, Arrays.copyOf(ghosts, nbGhosts), Arrays.copyOf(foodItems, nbFoodItems));
 	}
 
 }

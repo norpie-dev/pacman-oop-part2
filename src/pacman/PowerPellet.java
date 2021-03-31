@@ -7,4 +7,10 @@ public class PowerPellet extends FoodItem {
 		size = size * 2;
 	}
 
+	@Override
+	public void effect(Ghost[] ghosts) {
+		for (Ghost ghost : ghosts)
+			ghost.pacManAtePowerPellet();
+	}
+
 }

@@ -8,7 +8,7 @@ public class Maze {
 	private MazeMap map;
 	private PacMan pacMan;
 	private Ghost[] ghosts;
-	private Dot[] dots;
+	private FoodItem[] foodItems;
 
 	public MazeMap getMap() {
 		return map;
@@ -22,20 +22,20 @@ public class Maze {
 		return ghosts.clone();
 	}
 
-	public Dot[] getDots() {
-		return dots.clone();
+	public FoodItem[] getFoodItems() {
+		return foodItems.clone();
 	}
 
-	public Maze(Random random, MazeMap map, PacMan pacMan, Ghost[] ghosts, Dot[] dots) {
+	public Maze(Random random, MazeMap map, PacMan pacMan, Ghost[] ghosts, FoodItem[] foodItems) {
 		this.random = random;
 		this.map = map;
 		this.pacMan = pacMan;
 		this.ghosts = ghosts.clone();
-		this.dots = dots.clone();
+		this.foodItems = foodItems.clone();
 	}
 
 	public boolean isCompleted() {
-		return dots.length == 0;
+		return foodItems.length == 0;
 	}
 
 	private void checkPacManDamage() {
@@ -50,17 +50,19 @@ public class Maze {
 		checkPacManDamage();
 	}
 
-	private void removeDotAtIndex(int index) {
-		Dot[] newDots = new Dot[dots.length - 1];
-		System.arraycopy(dots, 0, newDots, 0, index);
-		System.arraycopy(dots, index + 1, newDots, index, newDots.length - index);
-		dots = newDots;
+	private void removeFoodItemAtIndex(int index) {
+		FoodItem foodItem = foodItems[index];
+		foodItem.effect(getGhosts());
+		FoodItem[] newFoodItems = new FoodItem[foodItems.length - 1];
+		System.arraycopy(foodItems, 0, newFoodItems, 0, index);
+		System.arraycopy(foodItems, index + 1, newFoodItems, index, newFoodItems.length - index);
+		foodItems = newFoodItems;
 	}
 
-	private void removeDotAtSquare(Square square) {
-		for (int i = 0; i < dots.length; i++) {
-			if (dots[i].getSquare().equals(square)) {
-				removeDotAtIndex(i);
+	private void removeFoodItemAtSquare(Square square) {
+		for (int i = 0; i < foodItems.length; i++) {
+			if (foodItems[i].getSquare().equals(square)) {
+				removeFoodItemAtIndex(i);
 				return;
 			}
 		}
@@ -70,13 +72,9 @@ public class Maze {
 		Square newSquare = pacMan.getSquare().getNeighbor(direction);
 		if (newSquare.isPassable()) {
 			pacMan.setSquare(newSquare);
-			removeDotAtSquare(newSquare);
+			removeFoodItemAtSquare(newSquare);
 			checkPacManDamage();
 		}
-	}
-
-	public FoodItem[] getFoodItems() {
-		return null;
 	}
 
 }
