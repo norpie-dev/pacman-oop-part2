@@ -5,9 +5,11 @@ import java.util.Random;
 public class VulnerableGhostState extends GhostState {
 
 	private int moveDelay;
+	private int resetCounter;
 
 	public VulnerableGhostState() {
 		moveDelay = 1;
+		resetCounter = 0;
 	}
 
 	@Override
@@ -17,6 +19,10 @@ public class VulnerableGhostState extends GhostState {
 
 	@Override
 	public void move(Ghost ghost, Random random) {
+		resetCounter++;
+		if(resetCounter == 12) {
+			ghost.setState(new RegularGhostState());
+		}
 		if (moveDelay != 0) {
 			moveDelay--;
 			return;

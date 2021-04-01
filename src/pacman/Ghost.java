@@ -76,6 +76,10 @@ public class Ghost {
 		this.square = square;
 	}
 	
+	public void setState(GhostState ghostState) {
+		this.ghostState = ghostState;
+	}
+	
 	/**
 	 * Sets this ghost's direction.
 	 * 
