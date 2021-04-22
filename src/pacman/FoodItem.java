@@ -8,17 +8,19 @@ package pacman;
  * @immutable
  *
  */
-public class FoodItem {
+public abstract class FoodItem {
 	
-	protected int size = 1;
+	protected final int DEFAULT_SIZE = 1; 
 	
-	public int getSize() {
-		return size;
-	}
-	
-	public void effect(Ghost[] ghosts) {
-		/* FoodItem has no effect by default */
-	}
+	/**
+	 * Returns the size of the food item
+	 * 
+	 * @post | getSize() == 1 || getSize() == 2
+	 * @basic
+	 */
+	public abstract int getSize();	
+
+	public abstract void effect(Ghost[] ghosts);
 
 	/**
 	 * @invar | square != null

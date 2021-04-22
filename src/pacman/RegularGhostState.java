@@ -7,4 +7,9 @@ public class RegularGhostState extends GhostState {
 		pacMan.die();
 		return this;
 	}
+
+	@Override
+	public boolean isVulnerable() {
+		return false;
+	}
 }

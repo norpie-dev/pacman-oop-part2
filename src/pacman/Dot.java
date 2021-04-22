@@ -10,4 +10,18 @@ public class Dot extends FoodItem {
 		super(square);
 	}
 
+	@Override
+	public void effect(Ghost[] ghosts) {
+		/* Dots do not have an effect */
+	}
+
+	/**
+	 * @post | getSize() == 1
+	 * @basic
+	 */
+	@Override
+	public int getSize() {
+		return DEFAULT_SIZE;
+	}
+
 }

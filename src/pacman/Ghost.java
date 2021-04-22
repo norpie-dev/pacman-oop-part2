@@ -99,7 +99,7 @@ public class Ghost {
 	
 	public void pacManAtePowerPellet() {
 		setDirection(direction.getOpposite());
-		this.ghostState = new VulnerableGhostState();
+		setState(new VulnerableGhostState());
 	}
 	
 	private static int MOVE_FORWARD_PREFERENCE = 10;
