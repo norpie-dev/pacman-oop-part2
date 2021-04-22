@@ -16,7 +16,7 @@ public class Dot extends FoodItem {
 	}
 
 	/**
-	 * @post | getSize() == 1
+	 * @post | result == 1
 	 * @basic
 	 */
 	@Override

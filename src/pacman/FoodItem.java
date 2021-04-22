@@ -15,7 +15,7 @@ public abstract class FoodItem {
 	/**
 	 * Returns the size of the food item
 	 * 
-	 * @post | getSize() == 1 || getSize() == 2
+	 * @post | result == 1 || result == 2
 	 * @basic
 	 */
 	public abstract int getSize();	

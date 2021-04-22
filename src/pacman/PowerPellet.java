@@ -13,7 +13,7 @@ public class PowerPellet extends FoodItem {
 	}
 
 	/**
-	 * @post | getSize() == 2
+	 * @post | result == 2
 	 * @basic
 	 */
 	@Override
